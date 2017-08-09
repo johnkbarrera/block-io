@@ -1,17 +1,15 @@
 /* This example script sweeps coin from the 'from_address' to the 'to_address'.
    Must specify the 'private_key' in Wallet Import Format.
-   
+
    IMPORTANT! Specify your own API Key. Your Private Key never goes to Block.io.
 
    Contact support@block.io for any help with this.
 */
 
 <?php
-require_once '/home/anazir/blockio-libs/php/lib/block_io.php';
+require_once '../lib/block_io.php';
+require_once '../lib/cred.php';
 
-$apiKey = 'YOUR API KEY';
-$pin = 'NONE'; // Not Needed
-$version = 2; // the API version
 
 $block_io = new BlockIo($apiKey, $pin, $version);
 

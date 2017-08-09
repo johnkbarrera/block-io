@@ -1,20 +1,20 @@
 /* This example script does the following:
-   
+
    1. Get available balance in your account for Dogecoin, or Litecoin, or Bitcoin, etc.
    2. Create an address labeled 'shibetime1' on the account if it does not already exist
    3. Withdraw 1% of total available balance in your account, and send it to the address labeled 'shibetime1'
-   
+
    IMPORTANT! Specify your own API Key and Secret PIN in this code. Keep your Secret PIN safe at all times.
 
    Contact support@block.io for any help with this.
 */
 
 <?php
-require_once '/path/to/block_io.php';
+require_once '../lib/block_io.php';
 
 /* Replace the $apiKey with the API Key from your Block.io Wallet. A different API key exists for Dogecoin, Dogecoin Testnet, Litecoin, Litecoin Testnet, etc. */
-$apiKey = 'YOUR DOGECOIN TESTNET API KEY';
-$pin = 'SECRET PIN';
+$apiKey = 'a250-ba5f-b328-aa89';  //'YOUR DOGECOIN TESTNET API KEY';
+$pin = 'dragonCITO4';  //'SECRET PIN';
 $version = 2; // the API version
 
 $block_io = new BlockIo($apiKey, $pin, $version);
@@ -25,7 +25,7 @@ $getBalanceInfo = "";
 
 try {
     $getBalanceInfo = $block_io->get_balance();
-    
+
     echo "!!! Using Network: ".$getBalanceInfo->data->network."\n";
     echo "Available Amount: ".$getBalanceInfo->data->available_balance." ".$getBalanceInfo->data->network."\n";
 } catch (Exception $e) {
@@ -65,7 +65,7 @@ echo "\n\n";
 echo "***Send 1% of coins on my account to the address labeled 'shibetime1'\n";
 
 // Use high decimal precision for any math on coins. They can be 8 decimal places at most, or the system will reject them as invalid amounts.
-$sendAmount = bcmul($getBalanceInfo->data->available_balance, '0.01', 8); 
+$sendAmount = bcmul($getBalanceInfo->data->available_balance, '0.01', 8);
 
 echo "Available Amount: ".$getBalanceInfo->data->available_balance." ".$getBalanceInfo->data->network."\n";
 
